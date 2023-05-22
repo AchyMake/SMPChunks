@@ -57,6 +57,7 @@ public final class SMPChunks extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
         }
         chunkStorage = new ChunkStorage(this);
+        reload();
         getCommand("chunk").setExecutor(new ChunkCommand());
         getCommand("chunks").setExecutor(new ChunksCommand());
         new PlayerBedEnter(this);
