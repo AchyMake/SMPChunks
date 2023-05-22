@@ -1,0 +1,61 @@
+name: SMPChunks
+version: '${project.version}'
+main: net.achymake.smpchunks.SMPChunks
+api-version: 1.19
+softdepend:
+  - PlaceholderAPI
+  - SMPCore
+  - Vault
+load: POSTWORLD
+author: AchyMake
+prefix: '${project.name}'
+description: '${project.description}'
+commands:
+  chunk:
+    description: chunk command
+    permission: chunks.command.chunk
+    usage: /chunk help
+  chunks:
+    description: chunks command
+    permission: chunks.command.chunks
+    usage: /chunks help
+permissions:
+  smpchunks.command.chunk:
+    description: chunk command
+    default: true
+  smpchunks.command.chunk.claim:
+    description: claims chunks
+    default: op
+  smpchunks.command.chunk.help:
+    description: chunk help
+    default: true
+  smpchunks.command.chunk.members:
+    description: add/remove members
+    default: op
+  smpchunks.command.chunk.tnt:
+    description: toggle tnt for the chunk
+    default: op
+  smpchunks.command.chunk.unclaim:
+    description: unclaims chunk
+    default: op
+  smpchunks.command.chunks:
+    description: chunks command
+    default: op
+  smpchunks.command.chunks.delete:
+    description: safely unclaims chunks
+    default: op
+  smpchunks.command.chunks.edit:
+    description: toggle chunk edit
+    default: op
+  smpchunks.command.chunks.help:
+    description: Chunks help list
+    default: op
+  smpchunks.command.chunks.info:
+    description: check chunk info
+    default: op
+  smpchunks.command.chunks.reload:
+    description: chunks reload
+    default: op
+  smpchunks.command.chunks.setowner:
+    description: sets chunk owner
+    default: op
