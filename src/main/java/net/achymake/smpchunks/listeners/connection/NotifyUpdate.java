@@ -16,6 +16,6 @@ public class NotifyUpdate implements Listener {
     public void onNotifyUpdate(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (!player.hasPermission("chunks.command.chunks.reload"))return;
-        new UpdateChecker(SMPChunks.getInstance(), 0).sendMessage(player);
+        new UpdateChecker(SMPChunks.getInstance(), 110010).sendMessage(player);
     }
 }

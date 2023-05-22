@@ -89,7 +89,7 @@ public final class SMPChunks extends JavaPlugin {
         new PlayerShearEntity(this);
         new CreatureSpawn(this);
         message.sendLog("Enabled " + getName()+" " + getDescription().getVersion());
-        new UpdateChecker(this,0).getUpdate();
+        new UpdateChecker(this,110010).getUpdate();
     }
     @Override
     public void onDisable() {
