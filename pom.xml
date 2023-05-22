@@ -6,7 +6,7 @@
 
     <groupId>net.achymake</groupId>
     <artifactId>SMPChunks</artifactId>
-    <version>1.10.0</version>
+    <version>1.10.1</version>
     <packaging>jar</packaging>
 
     <name>SMPChunks</name>
@@ -74,15 +74,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.19.4-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.github.AchyMake</groupId>
             <artifactId>SMPCore</artifactId>
-            <version>1.10.9</version>
+            <version>1.11.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
