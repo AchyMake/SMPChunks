@@ -20,13 +20,13 @@ public class PlayerCommandPreprocess implements Listener {
             if (chunkStorage.hasAccess(event.getPlayer(),event.getPlayer().getLocation().getChunk()))return;
             if (!event.getMessage().startsWith("/sethome"))return;
             event.setCancelled(true);
-            message.send(event.getPlayer(), "&cChunk is protected by&f Server");
+            message.send(event.getPlayer(), "&cYou can't&f sethome&c inside&f Server&c's Chunk");
         }
         if (chunkStorage.isClaimed(event.getPlayer().getLocation().getChunk())) {
             if (chunkStorage.hasAccess(event.getPlayer(),event.getPlayer().getLocation().getChunk()))return;
             if (!event.getMessage().startsWith("/sethome"))return;
             event.setCancelled(true);
-            message.sendActionBar(event.getPlayer(), "&cChunk is owned by&f " + chunkStorage.getOwner(event.getPlayer().getLocation().getChunk()).getName());
+            message.sendActionBar(event.getPlayer(), "&cYou can't&f sethome&c inside&f " + chunkStorage.getOwner(event.getPlayer().getLocation().getChunk()).getName() + "&c's Chunk");
         }
     }
 }
