@@ -3,7 +3,6 @@ package net.achymake.smpchunks.commands.chunks.sub;
 import net.achymake.smpchunks.SMPChunks;
 import net.achymake.smpchunks.commands.chunks.ChunksSubCommand;
 import net.achymake.smpchunks.files.ChunkStorage;
-import net.achymake.smpcore.SMPCore;
 import net.achymake.smpchunks.files.Message;
 import org.bukkit.Chunk;
 import org.bukkit.command.CommandSender;
