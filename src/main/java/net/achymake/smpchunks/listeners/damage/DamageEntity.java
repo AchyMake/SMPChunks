@@ -23,12 +23,14 @@ public class DamageEntity implements Listener {
         if (chunkStorage.isProtected(event.getEntity().getLocation().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getDamager(), event.getEntity().getLocation().getChunk()))return;
             if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
+            if (event.getEntity().isInvulnerable())return;
             event.setCancelled(true);
             message.sendActionBar((Player) event.getDamager(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getEntity().getLocation().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getDamager(), event.getEntity().getLocation().getChunk()))return;
             if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
+            if (event.getEntity().isInvulnerable())return;
             event.setCancelled(true);
             message.sendActionBar((Player) event.getDamager(), "&cChunk is owned by&f " + chunkStorage.getOwner(event.getEntity().getLocation().getChunk()).getName());
         }

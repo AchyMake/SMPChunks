@@ -27,6 +27,7 @@ public class DamageEntityWithThrownPotion implements Listener {
             if (damager.getShooter() instanceof Player) {
                 if (chunkStorage.hasAccess((Player) damager.getShooter(), event.getEntity().getLocation().getChunk()))return;
                 if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
+                if (event.getEntity().isInvulnerable())return;
                 event.setCancelled(true);
                 if (damager.getShooter() == null)return;
                 message.sendActionBar((Player) damager.getShooter(), "&cChunk is protected by&f Server");
@@ -37,6 +38,7 @@ public class DamageEntityWithThrownPotion implements Listener {
             if (damager.getShooter() instanceof Player) {
                 if (chunkStorage.hasAccess((Player) damager.getShooter(), event.getEntity().getLocation().getChunk()))return;
                 if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
+                if (event.getEntity().isInvulnerable())return;
                 event.setCancelled(true);
                 if (damager.getShooter() == null)return;
                 message.sendActionBar((Player) damager.getShooter(), "&cChunk is claimed by&f " + chunkStorage.getOwner(event.getEntity().getLocation().getChunk()).getName());

@@ -20,6 +20,7 @@ import net.achymake.smpchunks.listeners.interact.InteractEntity;
 import net.achymake.smpchunks.listeners.interact.InteractPhysical;
 import net.achymake.smpchunks.listeners.leash.PlayerLeashEntity;
 import net.achymake.smpchunks.listeners.mount.EntityMount;
+import net.achymake.smpchunks.listeners.move.PlayerMove;
 import net.achymake.smpchunks.listeners.shear.PlayerShearEntity;
 import net.achymake.smpchunks.listeners.spawn.CreatureSpawn;
 import net.achymake.smpchunks.version.UpdateChecker;
@@ -87,6 +88,7 @@ public final class SMPChunks extends JavaPlugin {
         new InteractPhysical(this);
         new PlayerLeashEntity(this);
         new EntityMount(this);
+        new PlayerMove(this);
         new PlayerShearEntity(this);
         new CreatureSpawn(this);
         message.sendLog("Enabled " + getName()+" " + getDescription().getVersion());
