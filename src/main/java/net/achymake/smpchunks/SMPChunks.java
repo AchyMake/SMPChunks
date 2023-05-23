@@ -5,6 +5,7 @@ import net.achymake.smpchunks.commands.chunks.ChunksCommand;
 import net.achymake.smpchunks.files.ChunkStorage;
 import net.achymake.smpchunks.files.Message;
 import net.achymake.smpchunks.listeners.bed.PlayerBedEnter;
+import net.achymake.smpchunks.listeners.bed.PlayerSpawnChange;
 import net.achymake.smpchunks.listeners.block.BlockBreak;
 import net.achymake.smpchunks.listeners.block.BlockFertilize;
 import net.achymake.smpchunks.listeners.block.BlockPlace;
@@ -62,6 +63,7 @@ public final class SMPChunks extends JavaPlugin {
         getCommand("chunk").setExecutor(new ChunkCommand());
         getCommand("chunks").setExecutor(new ChunksCommand());
         new PlayerBedEnter(this);
+        new PlayerSpawnChange(this);
         new BlockBreak(this);
         new BlockFertilize(this);
         new BlockPlace(this);
