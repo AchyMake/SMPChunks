@@ -18,7 +18,7 @@ public class EntityChangeBlock implements Listener {
             event.setCancelled(true);
         }
         if (chunkStorage.isClaimed(event.getBlock().getChunk())) {
-            if (!SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getEntity()))return;
+            if (!SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity()))return;
             event.setCancelled(true);
         }
     }

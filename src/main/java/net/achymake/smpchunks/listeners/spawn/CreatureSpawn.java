@@ -17,6 +17,7 @@ public class CreatureSpawn implements Listener {
         if (chunkStorage.isProtected(event.getEntity().getLocation().getChunk())) {
             if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.CUSTOM))return;
             if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.COMMAND))return;
+            if (event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.SPAWNER_EGG))return;
             event.setCancelled(true);
         }
     }

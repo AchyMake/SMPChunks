@@ -33,7 +33,7 @@ public class Unclaim extends ChunkSubCommand {
                 if (chunkStorage.isOwner(player, chunk)){
                     message.send(player, "&6You unclaimed a chunk and got refunded&a " + SMPCore.getEconomyProvider().currencyNameSingular() + SMPCore.getEconomyProvider().format(SMPChunks.getInstance().getConfig().getDouble("unclaim.refund")));
                     chunkStorage.unclaim(chunk);
-                    chunkStorage.startUnclaimEffect(player);
+                    chunkStorage.unclaimEffect(player);
                 } else {
                     message.send(player, "&cChunk already owned by&f " + chunkStorage.getOwner(chunk).getName());
                 }

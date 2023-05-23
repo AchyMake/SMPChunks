@@ -27,14 +27,18 @@ public class Delete extends ChunksSubCommand {
     @Override
     public void perform(CommandSender sender, String[] args) {
         if (sender.hasPermission("smpchunks.command.chunks.delete")) {
-            if (sender instanceof Player){
+            if (sender instanceof Player) {
                 if (args.length == 1){
                     Player player = (Player) sender;
                     Chunk chunk = player.getLocation().getChunk();
-                    if (chunkStorage.isClaimed(chunk)) {
+                    if (chunkStorage.isProtected(chunk)) {
+                        chunkStorage.unprotect(chunk);
+                        chunkStorage.unclaimEffect(player);
+                        message.send(player, "&6Chunk is now unprotected");
+                    } else if (chunkStorage.isClaimed(chunk)) {
                         message.send(player, "&6You safely unclaimed&f " + chunkStorage.getOwner(chunk).getName() + "&6 chunk");
                         chunkStorage.unclaim(chunk);
-                        chunkStorage.startUnclaimEffect(player);
+                        chunkStorage.unclaimEffect(player);
                     } else {
                         message.send(player, "&cChunk is already unclaimed");
                     }

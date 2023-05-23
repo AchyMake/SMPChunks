@@ -20,7 +20,7 @@ public class CauldronLevelChange implements Listener {
         if (chunkStorage.isProtected(event.getBlock().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getEntity(), event.getBlock().getChunk()))return;
             event.setCancelled(true);
-            message.sendActionBar((Player) event.getEntity(), "&cChunk is owned by&f Server");
+            message.sendActionBar((Player) event.getEntity(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getBlock().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getEntity(), event.getBlock().getChunk()))return;

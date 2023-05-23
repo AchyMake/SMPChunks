@@ -19,7 +19,7 @@ public class PlayerBedEnter implements Listener {
         if (chunkStorage.isProtected(event.getBed().getChunk())) {
             if (chunkStorage.hasAccess(event.getPlayer(), event.getBed().getChunk()))return;
             event.setCancelled(true);
-            message.sendActionBar(event.getPlayer(), "&cChunk is owned by&f Server");
+            message.sendActionBar(event.getPlayer(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getBed().getChunk())) {
             if (chunkStorage.hasAccess(event.getPlayer(), event.getBed().getChunk()))return;

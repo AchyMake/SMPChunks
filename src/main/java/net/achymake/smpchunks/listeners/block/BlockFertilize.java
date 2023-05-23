@@ -19,7 +19,7 @@ public class BlockFertilize implements Listener {
         if (chunkStorage.isProtected(event.getBlock().getChunk())) {
             if (chunkStorage.hasAccess(event.getPlayer(), event.getBlock().getChunk()))return;
             event.setCancelled(true);
-            message.sendActionBar(event.getPlayer(), "&cChunk is owned by&f Server");
+            message.sendActionBar(event.getPlayer(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getBlock().getChunk())) {
             if (chunkStorage.hasAccess(event.getPlayer(), event.getBlock().getChunk()))return;

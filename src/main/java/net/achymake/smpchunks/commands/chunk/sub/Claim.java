@@ -31,7 +31,7 @@ public class Claim extends ChunkSubCommand {
             if (args.length == 1) {
                 Chunk chunk = player.getLocation().getChunk();
                 if (chunkStorage.isProtected(chunk)) {
-                    message.send(player, "&cChunk already owned by&f Server");
+                    message.send(player, "&cChunk is protected by&f Server");
                 } else if (chunkStorage.isClaimed(chunk)) {
                     if (chunkStorage.isOwner(player ,chunk)) {
                         message.send(player, "&cYou already own this chunk");
@@ -42,7 +42,7 @@ public class Claim extends ChunkSubCommand {
                     if (SMPChunks.getInstance().getConfig().getInt("claim.max-claims") > playerConfig.get(player).getInt("chunks.claimed")) {
                         if (SMPCore.getEconomyProvider().getBalance(player) >= SMPChunks.getInstance().getConfig().getDouble("claim.cost")) {
                             chunkStorage.claim(player, chunk);
-                            chunkStorage.startClaimEffect(player);
+                            chunkStorage.claimEffect(player);
                             message.send(player, "&6You bought a chunk for&a " + SMPCore.getEconomyProvider().currencyNameSingular() + SMPCore.getEconomyProvider().format(SMPChunks.getInstance().getConfig().getDouble("claim.cost")));
                         } else {
                             message.send(player, "&cYou don't have&a " + SMPCore.getEconomyProvider().currencyNameSingular() + SMPCore.getEconomyProvider().format(SMPChunks.getInstance().getConfig().getDouble("claim.cost")) + "&c to buy a chunk");

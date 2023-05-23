@@ -19,10 +19,11 @@ public class EntityMount implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityMount(EntityMountEvent event) {
         if (!event.getEntity().getType().equals(EntityType.PLAYER))return;
+        if (event.getMount().getType().equals(EntityType.ARMOR_STAND))return;
         if (chunkStorage.isProtected(event.getMount().getLocation().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getEntity(), event.getMount().getLocation().getChunk()))return;
             event.setCancelled(true);
-            message.sendActionBar((Player) event.getEntity(), "&cChunk is owned by&f Server");
+            message.sendActionBar((Player) event.getEntity(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getMount().getLocation().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getEntity(), event.getMount().getLocation().getChunk()))return;

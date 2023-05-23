@@ -20,12 +20,12 @@ public class EntityTarget implements Listener {
         if (!event.getTarget().getType().equals(EntityType.PLAYER))return;
         if (chunkStorage.isProtected(event.getEntity().getLocation().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getTarget(), event.getEntity().getLocation().getChunk()))return;
-            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getEntity().getType()))return;
+            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
             event.setCancelled(true);
         }
         if (chunkStorage.isClaimed(event.getEntity().getLocation().getChunk())) {
             if (chunkStorage.hasAccess((Player) event.getTarget(), event.getEntity().getLocation().getChunk()))return;
-            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getEntity().getType()))return;
+            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
             event.setCancelled(true);
         }
     }

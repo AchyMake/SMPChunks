@@ -25,17 +25,17 @@ public class DamageEntityWithSnowball implements Listener {
             Snowball damager = (Snowball) event.getDamager();
             if (damager.getShooter() instanceof Player) {
                 if (chunkStorage.hasAccess((Player) damager.getShooter(), event.getEntity().getLocation().getChunk()))return;
-                if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getEntity().getType()))return;
+                if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
                 event.setCancelled(true);
                 if (damager.getShooter() == null)return;
-                message.sendActionBar((Player) damager.getShooter(), "&cChunk is claimed by&f Server");
+                message.sendActionBar((Player) damager.getShooter(), "&cChunk is protected by&f Server");
             }
         }
         if (chunkStorage.isClaimed(event.getEntity().getLocation().getChunk())) {
             Snowball damager = (Snowball) event.getDamager();
             if (damager.getShooter() instanceof Player) {
                 if (chunkStorage.hasAccess((Player) damager.getShooter(), event.getEntity().getLocation().getChunk()))return;
-                if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getEntity().getType()))return;
+                if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getEntity().getType()))return;
                 event.setCancelled(true);
                 if (damager.getShooter() == null)return;
                 message.sendActionBar((Player) damager.getShooter(), "&cChunk is claimed by&f " + chunkStorage.getOwner(event.getEntity().getLocation().getChunk()).getName());

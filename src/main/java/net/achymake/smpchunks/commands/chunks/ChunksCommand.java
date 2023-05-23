@@ -19,14 +19,15 @@ public class ChunksCommand implements CommandExecutor, TabCompleter {
         chunksSubCommands.add(new Effect());
         chunksSubCommands.add(new Help());
         chunksSubCommands.add(new Info());
+        chunksSubCommands.add(new Protect());
         chunksSubCommands.add(new Reload());
         chunksSubCommands.add(new SetOwner());
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length > 0){
-            for (ChunksSubCommand commands : chunksSubCommands){
-                if (args[0].equals(commands.getName())){
+        if (args.length > 0) {
+            for (ChunksSubCommand commands : chunksSubCommands) {
+                if (args[0].equals(commands.getName())) {
                     commands.perform(sender, args);
                 }
             }
@@ -51,6 +52,9 @@ public class ChunksCommand implements CommandExecutor, TabCompleter {
             }
             if (sender.hasPermission("smpchunks.command.chunks.info")) {
                 commands.add("info");
+            }
+            if (sender.hasPermission("smpchunks.command.chunks.protect")) {
+                commands.add("protect");
             }
             if (sender.hasPermission("smpchunks.command.chunks.reload")) {
                 commands.add("reload");

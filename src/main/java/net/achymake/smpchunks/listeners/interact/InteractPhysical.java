@@ -32,9 +32,6 @@ public class InteractPhysical implements Listener {
         }
     }
     private boolean isCancelled(Block block) {
-        if (Tag.CROPS.isTagged(block.getType())) {
-            return true;
-        }
         if (Tag.PRESSURE_PLATES.isTagged(block.getType())) {
             return true;
         }

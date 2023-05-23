@@ -26,7 +26,7 @@ public class InteractBlock implements Listener {
             if (chunkStorage.hasAccess(event.getPlayer(), event.getClickedBlock().getLocation().getChunk()))return;
             if (!isCancelledProtected(event.getClickedBlock()))return;
             event.setCancelled(true);
-            message.sendActionBar(event.getPlayer(), "&cChunk is owned by&f Server");
+            message.sendActionBar(event.getPlayer(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getClickedBlock().getLocation().getChunk())) {
             if (chunkStorage.hasAccess(event.getPlayer(), event.getClickedBlock().getLocation().getChunk()))return;

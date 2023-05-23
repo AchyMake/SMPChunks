@@ -30,11 +30,11 @@ public class SetOwner extends ChunksSubCommand {
             if (sender instanceof Player) {
                 if (args.length == 2) {
                     if (chunkStorage.isProtected(((Player) sender).getLocation().getChunk())) {
-                        message.send(sender, "&cChunk already has region");
+                        message.send(sender, "&cChunk is protected by&f Server");
                     } else {
                         OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                         chunkStorage.setOwner((Player) sender, target, ((Player) sender).getLocation().getChunk());
-                        chunkStorage.startClaimEffect((Player) sender);
+                        chunkStorage.claimEffect((Player) sender);
                         message.send(sender, "&6Chunk is now owned by&f " + chunkStorage.getOwner(((Player) sender).getLocation().getChunk()).getName());
                     }
                 }

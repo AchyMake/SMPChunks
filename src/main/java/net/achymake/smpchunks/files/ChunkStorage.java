@@ -95,7 +95,7 @@ public class ChunkStorage {
         }
         return uuids;
     }
-    public void startClaimEffect(Player player) {
+    public void claimEffect(Player player) {
         Particle particle = Particle.valueOf(SMPChunks.getInstance().getConfig().getString("claim.particle"));
         Location locationSouth = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(15, 0, 8).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(15, 0, 8).getZ());
         Location locationEast = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(8, 0, 15).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(8, 0, 15).getZ());
@@ -105,7 +105,7 @@ public class ChunkStorage {
         player.spawnParticle(particle,locationSouth.add(1, 0, 0), 250, 0, 12, 4, 0);
         player.spawnParticle(particle,locationEast.add(0, 0, 1), 250, 4, 12, 0, 0);
     }
-    public void startUnclaimEffect(Player player) {
+    public void unclaimEffect(Player player) {
         Particle particle = Particle.valueOf(SMPChunks.getInstance().getConfig().getString("unclaim.particle"));
         Location locationSouth = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(15, 0, 8).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(15, 0, 8).getZ());
         Location locationEast = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(8, 0, 15).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(8, 0, 15).getZ());
@@ -130,10 +130,10 @@ public class ChunkStorage {
     public boolean isProtected(Chunk chunk) {
         return getData(chunk).has(NamespacedKey.minecraft("protected"), PersistentDataType.STRING);
     }
-    public void setProtected(Chunk chunk, String region) {
+    public void protect(Chunk chunk) {
         getData(chunk).set(NamespacedKey.minecraft("protected"), PersistentDataType.STRING, "true");
     }
-    public void removeProtected(Chunk chunk) {
+    public void unprotect(Chunk chunk) {
         getData(chunk).remove(NamespacedKey.minecraft("protected"));
     }
     public List<Player> getChunkEditors() {

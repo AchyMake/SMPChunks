@@ -29,11 +29,11 @@ public class Effect extends ChunksSubCommand {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     if (args[1].equalsIgnoreCase("claim")) {
-                        chunkStorage.startClaimEffect(player);
+                        chunkStorage.claimEffect(player);
                         message.sendActionBar(player, "&6Started the effects of claiming");
                     }
                     if (args[1].equalsIgnoreCase("unclaim")) {
-                        chunkStorage.startUnclaimEffect(player);
+                        chunkStorage.unclaimEffect(player);
                         message.sendActionBar(player, "&6Started the effects of unclaiming");
                     }
                 }

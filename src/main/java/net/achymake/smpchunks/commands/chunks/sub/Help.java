@@ -30,15 +30,15 @@ public class Help extends ChunksSubCommand {
                 if (sender.hasPermission("smpchunks.command.chunks.edit")) {
                     message.send(sender, "&f/chunks edit &7- toggle chunk edit");
                 }
+                if (sender.hasPermission("smpchunks.command.chunks.effect")) {
+                    message.send(sender, "&f/chunks effect &7- effects of claiming");
+                }
                 message.send(sender, "&f/chunks help &7- show this list");
                 if (sender.hasPermission("smpchunks.command.chunks.info")) {
                     message.send(sender, "&f/chunks info &7- checks info of chunk");
                 }
-                if (sender.hasPermission("smpchunks.command.chunks.region")) {
-                    message.send(sender, "&f/chunks region set region &7- sets region for chunk");
-                }
-                if (sender.hasPermission("smpchunks.command.chunks.region")) {
-                    message.send(sender, "&f/chunks region create region &7- create regions");
+                if (sender.hasPermission("smpchunks.command.chunks.protect")) {
+                    message.send(sender, "&f/chunks protect &7- protects a chunk");
                 }
                 if (sender.hasPermission("smpchunks.command.chunks.reload")) {
                     message.send(sender, "&f/chunks reload &7- reload chunk plugin");

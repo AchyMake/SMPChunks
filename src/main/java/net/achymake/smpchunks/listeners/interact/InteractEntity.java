@@ -21,15 +21,15 @@ public class InteractEntity implements Listener {
             if (event.getRightClicked().getType().equals(EntityType.PLAYER))return;
             if (event.getRightClicked().isInvulnerable())return;
             if (chunkStorage.hasAccess(event.getPlayer(), event.getRightClicked().getLocation().getChunk()))return;
-            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getRightClicked().getType()))return;
+            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getRightClicked().getType()))return;
             event.setCancelled(true);
-            message.sendActionBar(event.getPlayer(), "&cChunk is owned by&f Server");
+            message.sendActionBar(event.getPlayer(), "&cChunk is protected by&f Server");
         }
         if (chunkStorage.isClaimed(event.getRightClicked().getLocation().getChunk())) {
             if (event.getRightClicked().getType().equals(EntityType.PLAYER))return;
             if (event.getRightClicked().isInvulnerable())return;
             if (chunkStorage.hasAccess(event.getPlayer(), event.getRightClicked().getLocation().getChunk()))return;
-            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile."+event.getRightClicked().getType()))return;
+            if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getRightClicked().getType()))return;
             event.setCancelled(true);
             message.sendActionBar(event.getPlayer(), "&cChunk is owned by&f " + chunkStorage.getOwner(event.getRightClicked().getLocation().getChunk()).getName());
         }
