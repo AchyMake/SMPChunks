@@ -19,12 +19,9 @@ public class Message {
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(color(message)));
     }
     public void sendLog(String message) {
-        getSmpChunks().getServer().getConsoleSender().sendMessage("[" + getSmpChunks().getName() + "] " + message);
+        smpChunks.getServer().getConsoleSender().sendMessage("[" + smpChunks.getName() + "] " + message);
     }
     public String color(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
-    }
-    public SMPChunks getSmpChunks() {
-        return smpChunks;
     }
 }
