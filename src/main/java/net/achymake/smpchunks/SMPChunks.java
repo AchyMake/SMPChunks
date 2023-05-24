@@ -15,6 +15,7 @@ import net.achymake.smpchunks.listeners.bucket.PlayerBucketFill;
 import net.achymake.smpchunks.listeners.cauldron.CauldronLevelChange;
 import net.achymake.smpchunks.listeners.chat.PlayerCommandPreprocess;
 import net.achymake.smpchunks.listeners.connection.NotifyUpdate;
+import net.achymake.smpchunks.listeners.connection.QuitWhileChunkEdit;
 import net.achymake.smpchunks.listeners.damage.*;
 import net.achymake.smpchunks.listeners.entity.*;
 import net.achymake.smpchunks.listeners.interact.InteractBlock;
@@ -74,6 +75,7 @@ public final class SMPChunks extends JavaPlugin {
         new CauldronLevelChange(this);
         new PlayerCommandPreprocess(this);
         new NotifyUpdate(this);
+        new QuitWhileChunkEdit(this);
         new DamageEntity(this);
         new DamageEntityWithArrow(this);
         new DamageEntityWithSnowball(this);
