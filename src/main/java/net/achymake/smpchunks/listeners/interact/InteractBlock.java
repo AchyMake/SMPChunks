@@ -93,7 +93,7 @@ public class InteractBlock implements Listener {
         if (block.getType().equals(Material.REPEATER)) {
             return true;
         }
-        if (block.getType().equals(Material.REDSTONE)) {
+        if (block.getType().equals(Material.REDSTONE_WIRE)) {
             return true;
         }
         if (block.getType().equals(Material.LEVER)) {
