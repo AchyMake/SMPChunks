@@ -84,9 +84,6 @@ public class InteractBlock implements Listener {
         if (block.getType().equals(Material.LECTERN)) {
             return true;
         }
-        if (block.getType().equals(Material.BARREL)) {
-            return true;
-        }
         if (block.getType().equals(Material.COMPARATOR)) {
             return true;
         }
@@ -136,6 +133,12 @@ public class InteractBlock implements Listener {
             return true;
         }
         if (block.getType().equals(Material.CHEST)) {
+            return true;
+        }
+        if (block.getType().equals(Material.TRAPPED_CHEST)) {
+            return true;
+        }
+        if (block.getType().equals(Material.BARREL)) {
             return true;
         }
         return false;

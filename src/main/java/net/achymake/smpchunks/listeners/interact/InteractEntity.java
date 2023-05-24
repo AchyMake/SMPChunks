@@ -19,6 +19,8 @@ public class InteractEntity implements Listener {
     public void onInteractEntity(PlayerInteractEntityEvent event) {
         if (chunkStorage.isProtected(event.getRightClicked().getLocation().getChunk())) {
             if (event.getRightClicked().getType().equals(EntityType.PLAYER))return;
+            if (event.getRightClicked().getType().equals(EntityType.MINECART))return;
+            if (event.getRightClicked().getType().equals(EntityType.BOAT))return;
             if (event.getRightClicked().isInvulnerable())return;
             if (chunkStorage.hasAccess(event.getPlayer(), event.getRightClicked().getLocation().getChunk()))return;
             if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getRightClicked().getType()))return;
@@ -27,6 +29,8 @@ public class InteractEntity implements Listener {
         }
         if (chunkStorage.isClaimed(event.getRightClicked().getLocation().getChunk())) {
             if (event.getRightClicked().getType().equals(EntityType.PLAYER))return;
+            if (event.getRightClicked().getType().equals(EntityType.MINECART))return;
+            if (event.getRightClicked().getType().equals(EntityType.BOAT))return;
             if (event.getRightClicked().isInvulnerable())return;
             if (chunkStorage.hasAccess(event.getPlayer(), event.getRightClicked().getLocation().getChunk()))return;
             if (SMPChunks.getInstance().getConfig().getBoolean("is-hostile." + event.getRightClicked().getType()))return;
