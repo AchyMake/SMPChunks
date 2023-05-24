@@ -121,8 +121,9 @@ public class ChunkStorage {
         playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") + 1);
     }
     public void unclaim(Chunk chunk) {
-        playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") - 1);
-        SMPCore.getEconomyProvider().depositPlayer(getOwner(chunk), SMPChunks.getInstance().getConfig().getDouble("unclaim.refund"));
+        OfflinePlayer offlinePlayer = getOwner(chunk);
+        playerConfig.setInt(offlinePlayer,"chunks.claimed", playerConfig.get(offlinePlayer).getInt("chunks.claimed") - 1);
+        SMPCore.getEconomyProvider().depositPlayer(offlinePlayer, smpChunks.getConfig().getDouble("unclaim.refund"));
         getData(chunk).remove(NamespacedKey.minecraft("date-claimed"));
         getData(chunk).remove(NamespacedKey.minecraft("owner"));
     }
