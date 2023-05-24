@@ -49,8 +49,7 @@ public class ChunkStorage {
         return getData(chunk).has(NamespacedKey.minecraft("tnt"), PersistentDataType.STRING);
     }
     public OfflinePlayer getOwner(Chunk chunk) {
-        String uuidString = getData(chunk).get(NamespacedKey.minecraft("owner"), PersistentDataType.STRING);
-        return Bukkit.getOfflinePlayer(UUID.fromString(uuidString));
+        return smpChunks.getServer().getOfflinePlayer(UUID.fromString(getData(chunk).get(NamespacedKey.minecraft("owner"), PersistentDataType.STRING)));
     }
     public String getDateClaimed(Chunk chunk) {
         return getData(chunk).get(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING);
@@ -80,7 +79,7 @@ public class ChunkStorage {
     }
     public List<String> getMembers(OfflinePlayer offlinePlayer) {
         List<String> members = new ArrayList<>();
-        if (playerConfig.exist(offlinePlayer)){
+        if (playerConfig.exist(offlinePlayer)) {
             return playerConfig.get(offlinePlayer).getStringList("members");
         }else{
             return members;
@@ -122,10 +121,10 @@ public class ChunkStorage {
         playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") + 1);
     }
     public void unclaim(Chunk chunk) {
+        playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") - 1);
         SMPCore.getEconomyProvider().depositPlayer(getOwner(chunk), SMPChunks.getInstance().getConfig().getDouble("unclaim.refund"));
         getData(chunk).remove(NamespacedKey.minecraft("date-claimed"));
         getData(chunk).remove(NamespacedKey.minecraft("owner"));
-        playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") - 1);
     }
     public boolean isProtected(Chunk chunk) {
         return getData(chunk).has(NamespacedKey.minecraft("protected"), PersistentDataType.STRING);
