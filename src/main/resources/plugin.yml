@@ -3,9 +3,9 @@ version: '${project.version}'
 main: net.achymake.smpchunks.SMPChunks
 api-version: 1.19
 softdepend:
-  - PlaceholderAPI
   - SMPCore
   - Vault
+  - PlaceholderAPI
 load: POSTWORLD
 author: AchyMake
 prefix: '${project.name}'
@@ -47,11 +47,17 @@ permissions:
   smpchunks.command.chunks.edit:
     description: toggle chunk edit
     default: op
+  smpchunks.command.chunks.effect:
+    description: toggle chunk edit
+    default: op
   smpchunks.command.chunks.help:
     description: Chunks help list
     default: op
   smpchunks.command.chunks.info:
     description: check chunk info
+    default: op
+  smpchunks.command.chunks.protect:
+    description: protect chunks
     default: op
   smpchunks.command.chunks.reload:
     description: chunks reload
