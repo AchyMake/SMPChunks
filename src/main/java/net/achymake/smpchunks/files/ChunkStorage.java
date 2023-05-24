@@ -3,7 +3,12 @@ package net.achymake.smpchunks.files;
 import net.achymake.smpchunks.SMPChunks;
 import net.achymake.smpcore.SMPCore;
 import net.achymake.smpcore.files.PlayerConfig;
-import org.bukkit.*;
+import org.bukkit.Chunk;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
+import org.bukkit.Location;
+import org.bukkit.Sound;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -42,14 +47,21 @@ public class ChunkStorage {
         return getOwner(chunk) == player;
     }
     public void setOwner(Player player, OfflinePlayer target, Chunk chunk) {
-        getData(chunk).set(NamespacedKey.minecraft("owner"), PersistentDataType.STRING, target.getUniqueId().toString());
-        getData(chunk).set(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING, SimpleDateFormat.getDateInstance().format(player.getLastPlayed()));
+        if (isClaimed(chunk)) {
+            playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") - 1);
+            getData(chunk).set(NamespacedKey.minecraft("owner"), PersistentDataType.STRING, target.getUniqueId().toString());
+            getData(chunk).set(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING, SimpleDateFormat.getDateInstance().format(player.getLastPlayed()));
+            playerConfig.setInt(target,"chunks.claimed", playerConfig.get(target).getInt("chunks.claimed") + 1);
+        } else {
+            getData(chunk).set(NamespacedKey.minecraft("owner"), PersistentDataType.STRING, target.getUniqueId().toString());
+            getData(chunk).set(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING, SimpleDateFormat.getDateInstance().format(player.getLastPlayed()));
+        }
     }
     public boolean TNTAllowed(Chunk chunk) {
         return getData(chunk).has(NamespacedKey.minecraft("tnt"), PersistentDataType.STRING);
     }
     public OfflinePlayer getOwner(Chunk chunk) {
-        return smpChunks.getServer().getOfflinePlayer(UUID.fromString(getData(chunk).get(NamespacedKey.minecraft("owner"), PersistentDataType.STRING)));
+        return getSmpChunks().getServer().getOfflinePlayer(UUID.fromString(getData(chunk).get(NamespacedKey.minecraft("owner"), PersistentDataType.STRING)));
     }
     public String getDateClaimed(Chunk chunk) {
         return getData(chunk).get(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING);
@@ -95,35 +107,35 @@ public class ChunkStorage {
         return uuids;
     }
     public void claimEffect(Player player) {
-        Particle particle = Particle.valueOf(SMPChunks.getInstance().getConfig().getString("claim.particle"));
+        Particle particle = Particle.valueOf(getSmpChunks().getConfig().getString("claim.particle"));
         Location locationSouth = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(15, 0, 8).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(15, 0, 8).getZ());
         Location locationEast = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(8, 0, 15).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(8, 0, 15).getZ());
-        player.playSound(player.getLocation(), Sound.valueOf(SMPChunks.getInstance().getConfig().getString("claim.sound.type")), Float.parseFloat(SMPChunks.getInstance().getConfig().getString("claim.sound.volume")), Float.parseFloat(SMPChunks.getInstance().getConfig().getString("claim.sound.pitch")));
+        player.playSound(player.getLocation(), Sound.valueOf(getSmpChunks().getConfig().getString("claim.sound.type")), Float.parseFloat(getSmpChunks().getConfig().getString("claim.sound.volume")), Float.parseFloat(SMPChunks.getInstance().getConfig().getString("claim.sound.pitch")));
         player.spawnParticle(particle, player.getLocation().getChunk().getBlock(8, 0, 0).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(8, 0, 0).getZ(), 250, 4, 12, 0, 0);
         player.spawnParticle(particle, player.getLocation().getChunk().getBlock(0, 0, 8).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(0, 0, 8).getZ(), 250, 0, 12, 4, 0);
         player.spawnParticle(particle,locationSouth.add(1, 0, 0), 250, 0, 12, 4, 0);
         player.spawnParticle(particle,locationEast.add(0, 0, 1), 250, 4, 12, 0, 0);
     }
     public void unclaimEffect(Player player) {
-        Particle particle = Particle.valueOf(SMPChunks.getInstance().getConfig().getString("unclaim.particle"));
+        Particle particle = Particle.valueOf(getSmpChunks().getConfig().getString("unclaim.particle"));
         Location locationSouth = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(15, 0, 8).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(15, 0, 8).getZ());
         Location locationEast = new Location(player.getWorld(), player.getLocation().getChunk().getBlock(8, 0, 15).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(8, 0, 15).getZ());
-        player.playSound(player.getLocation(), Sound.valueOf(SMPChunks.getInstance().getConfig().getString("unclaim.sound.type")),Float.parseFloat(SMPChunks.getInstance().getConfig().getString("unclaim.sound.volume")), Float.parseFloat(SMPChunks.getInstance().getConfig().getString("unclaim.sound.pitch")));
+        player.playSound(player.getLocation(), Sound.valueOf(getSmpChunks().getConfig().getString("unclaim.sound.type")),Float.parseFloat(getSmpChunks().getConfig().getString("unclaim.sound.volume")), Float.parseFloat(SMPChunks.getInstance().getConfig().getString("unclaim.sound.pitch")));
         player.spawnParticle(particle, player.getLocation().getChunk().getBlock(8, 0, 0).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(8, 0, 0).getZ(), 250, 4, 12, 0, 0);
         player.spawnParticle(particle, player.getLocation().getChunk().getBlock(0, 0, 8).getX(), player.getLocation().getBlockY()-3, player.getLocation().getChunk().getBlock(0, 0, 8).getZ(), 250, 0, 12, 4, 0);
         player.spawnParticle(particle,locationSouth.add(1, 0, 0), 250, 0, 12, 4, 0);
         player.spawnParticle(particle,locationEast.add(0, 0, 1), 250, 4, 12, 0, 0);
     }
-    public void claim(Player player,Chunk chunk) {
-        SMPCore.getEconomyProvider().withdrawPlayer(player, SMPChunks.getInstance().getConfig().getDouble("claim.cost"));
+    public void claim(Player player, Chunk chunk) {
+        SMPCore.getEconomyProvider().withdrawPlayer(player, getSmpChunks().getConfig().getDouble("claim.cost"));
         getData(chunk).set(NamespacedKey.minecraft("owner"), PersistentDataType.STRING,player.getUniqueId().toString());
         getData(chunk).set(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING, SimpleDateFormat.getDateInstance().format(player.getLastPlayed()));
-        playerConfig.setInt(getOwner(chunk),"chunks.claimed", playerConfig.get(getOwner(chunk)).getInt("chunks.claimed") + 1);
+        playerConfig.setInt(player,"chunks.claimed", playerConfig.get(player).getInt("chunks.claimed") + 1);
     }
     public void unclaim(Chunk chunk) {
         OfflinePlayer offlinePlayer = getOwner(chunk);
         playerConfig.setInt(offlinePlayer,"chunks.claimed", playerConfig.get(offlinePlayer).getInt("chunks.claimed") - 1);
-        SMPCore.getEconomyProvider().depositPlayer(offlinePlayer, smpChunks.getConfig().getDouble("unclaim.refund"));
+        SMPCore.getEconomyProvider().depositPlayer(offlinePlayer, getSmpChunks().getConfig().getDouble("unclaim.refund"));
         getData(chunk).remove(NamespacedKey.minecraft("date-claimed"));
         getData(chunk).remove(NamespacedKey.minecraft("owner"));
     }
