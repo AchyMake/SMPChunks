@@ -53,9 +53,9 @@ public class ChunkStorage {
             getData(chunk).set(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING, SimpleDateFormat.getDateInstance().format(player.getLastPlayed()));
             playerConfig.setInt(target,"chunks.claimed", playerConfig.get(target).getInt("chunks.claimed") + 1);
         } else {
+            playerConfig.setInt(target,"chunks.claimed", playerConfig.get(target).getInt("chunks.claimed") + 1);
             getData(chunk).set(NamespacedKey.minecraft("owner"), PersistentDataType.STRING, target.getUniqueId().toString());
             getData(chunk).set(NamespacedKey.minecraft("date-claimed"), PersistentDataType.STRING, SimpleDateFormat.getDateInstance().format(player.getLastPlayed()));
-            playerConfig.setInt(target,"chunks.claimed", playerConfig.get(target).getInt("chunks.claimed") + 1);
         }
     }
     public boolean TNTAllowed(Chunk chunk) {
