@@ -29,7 +29,7 @@ public class Help extends ChunkSubCommand {
                 }
                 message.send(player, "/chunk help&7 - show this list");
                 if (player.hasPermission("smpchunks.command.chunk.members")) {
-                    message.send(player, "/chunk members&7 - chech members");
+                    message.send(player, "/chunk members&7 - check member list");
                     message.send(player, "/chunk members add target&7 - add member");
                     message.send(player, "/chunk members remove target&7 - remove member");
                 }

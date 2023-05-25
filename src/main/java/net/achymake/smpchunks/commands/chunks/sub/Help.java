@@ -41,7 +41,7 @@ public class Help extends ChunksSubCommand {
                     message.send(sender, "&f/chunks protect &7- protects a chunk");
                 }
                 if (sender.hasPermission("smpchunks.command.chunks.reload")) {
-                    message.send(sender, "&f/chunks reload &7- reload chunk plugin");
+                    message.send(sender, "&f/chunks reload &7- reload smpchunks plugin");
                 }
                 if (sender.hasPermission("smpchunks.command.chunks.setowner")) {
                     message.send(sender, "&f/chunks setowner target &7- sets chunk owner if claimed");

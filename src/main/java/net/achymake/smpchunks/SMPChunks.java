@@ -27,12 +27,8 @@ import net.achymake.smpchunks.listeners.move.PlayerMove;
 import net.achymake.smpchunks.listeners.shear.PlayerShearEntity;
 import net.achymake.smpchunks.listeners.spawn.CreatureSpawn;
 import net.achymake.smpchunks.version.UpdateChecker;
-import net.achymake.smpcore.SMPCore;
 import net.achymake.smpchunks.api.PlaceholderProvider;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -125,19 +121,6 @@ public final class SMPChunks extends JavaPlugin {
         } else {
             getConfig().options().copyDefaults(true);
             saveConfig();
-        }
-        for (OfflinePlayer offlinePlayer : getServer().getOfflinePlayers()) {
-            File playerFiles = new File(SMPCore.getInstance().getDataFolder(), "userdata/" + offlinePlayer.getUniqueId() + ".yml");
-            if (playerFiles.exists()) {
-                FileConfiguration playerConfigs = YamlConfiguration.loadConfiguration(playerFiles);
-                try {
-                    playerConfigs.load(playerFiles);
-                    playerConfigs.options().copyDefaults(true);
-                    playerConfigs.save(playerFiles);
-                } catch (IOException | InvalidConfigurationException e) {
-                    message.sendLog(e.getMessage());
-                }
-            }
         }
     }
     public static SMPChunks getInstance() {
