@@ -4,6 +4,7 @@ notify-update:
 claim:
   cost: 1250.0
   max-claims: 64
+  redstone-only-inside: false
   protect-tamed-outside: true
   particle: TOTEM
   sound:

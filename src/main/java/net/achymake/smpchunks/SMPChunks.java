@@ -10,6 +10,7 @@ import net.achymake.smpchunks.listeners.bed.PlayerSpawnChange;
 import net.achymake.smpchunks.listeners.block.BlockBreak;
 import net.achymake.smpchunks.listeners.block.BlockFertilize;
 import net.achymake.smpchunks.listeners.block.BlockPlace;
+import net.achymake.smpchunks.listeners.block.BlockRedstone;
 import net.achymake.smpchunks.listeners.bucket.PlayerBucketEmpty;
 import net.achymake.smpchunks.listeners.bucket.PlayerBucketEntity;
 import net.achymake.smpchunks.listeners.bucket.PlayerBucketFill;
@@ -68,6 +69,7 @@ public final class SMPChunks extends JavaPlugin {
         new BlockBreak(this);
         new BlockFertilize(this);
         new BlockPlace(this);
+        new BlockRedstone(this);
         new PlayerBucketEmpty(this);
         new PlayerBucketEntity(this);
         new PlayerBucketFill(this);
@@ -120,7 +122,6 @@ public final class SMPChunks extends JavaPlugin {
         if (configFile.exists()) {
             try {
                 getConfig().load(configFile);
-                getConfig().options().copyDefaults(true);
                 saveConfig();
             } catch (IOException | InvalidConfigurationException e) {
                 message.sendLog(e.getMessage());
