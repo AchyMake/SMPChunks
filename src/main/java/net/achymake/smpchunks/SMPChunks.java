@@ -1,5 +1,6 @@
 package net.achymake.smpchunks;
 
+import net.achymake.smpchunks.api.Metrics;
 import net.achymake.smpchunks.commands.chunk.ChunkCommand;
 import net.achymake.smpchunks.commands.chunks.ChunksCommand;
 import net.achymake.smpchunks.files.ChunkStorage;
@@ -38,6 +39,7 @@ public final class SMPChunks extends JavaPlugin {
     private static SMPChunks instance;
     private static Message message;
     private static ChunkStorage chunkStorage;
+    private static Metrics metrics;
     private final File configFile = new File(getDataFolder(), "config.yml");
     @Override
     public void onEnable() {
@@ -57,6 +59,7 @@ public final class SMPChunks extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
         }
         chunkStorage = new ChunkStorage(this);
+        metrics = new Metrics(this, 18571);
         reload();
         getCommand("chunk").setExecutor(new ChunkCommand());
         getCommand("chunks").setExecutor(new ChunksCommand());
@@ -101,6 +104,7 @@ public final class SMPChunks extends JavaPlugin {
         if (!chunkStorage.getChunkEditors().isEmpty()) {
             chunkStorage.getChunkEditors().clear();
         }
+        metrics.shutdown();
         message.sendLog("Disabled " + getName() + " " + getDescription().getVersion());
     }
     public static ChunkStorage getChunkStorage() {
@@ -108,6 +112,9 @@ public final class SMPChunks extends JavaPlugin {
     }
     public static Message getMessage() {
         return message;
+    }
+    public static Metrics getMetrics() {
+        return metrics;
     }
     public void reload() {
         if (configFile.exists()) {
