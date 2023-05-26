@@ -6,12 +6,12 @@
 
     <groupId>net.achymake</groupId>
     <artifactId>SMPChunks</artifactId>
-    <version>1.11.5</version>
+    <version>1.11.6</version>
     <packaging>jar</packaging>
 
     <name>SMPChunks</name>
-
     <description>Provides Chunk Claiming for SMPCore</description>
+
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
