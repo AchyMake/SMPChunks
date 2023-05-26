@@ -41,7 +41,6 @@ public final class SMPChunks extends JavaPlugin {
     private static Message message;
     private static ChunkStorage chunkStorage;
     private static Metrics metrics;
-    private final File configFile = new File(getDataFolder(), "config.yml");
     @Override
     public void onEnable() {
         instance = this;
@@ -119,9 +118,9 @@ public final class SMPChunks extends JavaPlugin {
         return metrics;
     }
     public void reload() {
-        if (configFile.exists()) {
+        if (new File(getDataFolder(), "config.yml").exists()) {
             try {
-                getConfig().load(configFile);
+                getConfig().load(new File(getDataFolder(), "config.yml"));
                 saveConfig();
             } catch (IOException | InvalidConfigurationException e) {
                 message.sendLog(e.getMessage());

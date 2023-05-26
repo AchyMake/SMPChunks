@@ -1,6 +1,7 @@
 package net.achymake.smpchunks.version;
 
 import net.achymake.smpchunks.SMPChunks;
+import net.achymake.smpchunks.files.Message;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class UpdateChecker {
         this.smpChunks = smpChunks;
         this.resourceId = resourceId;
     }
+    private final Message message = SMPChunks.getMessage();
     public void getVersion(Consumer<String> consumer) {
         smpChunks.getServer().getScheduler().runTaskAsynchronously(smpChunks, () -> {
             try {
@@ -29,7 +31,7 @@ public class UpdateChecker {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                SMPChunks.getMessage().sendLog(e.getMessage());
+                message.sendLog(e.getMessage());
             }
         });
     }
@@ -37,10 +39,10 @@ public class UpdateChecker {
         if (smpChunks.getConfig().getBoolean("notify-update.enable")) {
             (new UpdateChecker(smpChunks, resourceId)).getVersion((latest) -> {
                 if (smpChunks.getDescription().getVersion().equals(latest)) {
-                    SMPChunks.getMessage().sendLog("You are using the latest version");
+                    message.sendLog("You are using the latest version");
                 } else {
-                    SMPChunks.getMessage().sendLog("New Update: " + latest);
-                    SMPChunks.getMessage().sendLog("Current Version: " + smpChunks.getDescription().getVersion());
+                    message.sendLog("New Update: " + latest);
+                    message.sendLog("Current Version: " + smpChunks.getDescription().getVersion());
                 }
             });
         }
@@ -49,8 +51,8 @@ public class UpdateChecker {
         if (smpChunks.getConfig().getBoolean("notify-update.enable")) {
             (new UpdateChecker(smpChunks, resourceId)).getVersion((latest) -> {
                 if (!smpChunks.getDescription().getVersion().equalsIgnoreCase(latest)) {
-                    SMPChunks.getMessage().send(player, "&6" + smpChunks.getName() + " Update:&f "+ latest);
-                    SMPChunks.getMessage().send(player, "&6Current Version: &f" + smpChunks.getDescription().getVersion());
+                    message.send(player, "&6" + smpChunks.getName() + " Update:&f "+ latest);
+                    message.send(player, "&6Current Version: &f" + smpChunks.getDescription().getVersion());
                 }
             });
         }
