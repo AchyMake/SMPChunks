@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.github.AchyMake</groupId>
             <artifactId>SMPCore</artifactId>
-            <version>1.11.5</version>
+            <version>1.11.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
