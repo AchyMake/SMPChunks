@@ -6,7 +6,7 @@
 
     <groupId>net.achymake</groupId>
     <artifactId>SMPChunks</artifactId>
-    <version>1.11.7</version>
+    <version>1.11.8</version>
     <packaging>jar</packaging>
 
     <name>SMPChunks</name>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.github.AchyMake</groupId>
             <artifactId>SMPCore</artifactId>
-            <version>1.11.6</version>
+            <version>1.11.8</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
